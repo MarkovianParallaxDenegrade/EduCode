@@ -1,0 +1,59 @@
+<html>
+    <head>
+    <title>Woofer(TM)</title>
+    <script type=text/javascript>
+        function deshabilitarBoton() {
+            document.getElementById("envio").innerHTML ="hello";
+            return true;}
+        </script>
+        <style>
+            div1 {
+                white-space: pre-wrap;
+            }
+        </style>
+    </head>
+
+    <body>
+    <font color="black"><br>Welcome to Woofer(TM)! Please log in. If you haven't logged in before, a new user account will be created for you!<br></font>
+        
+        <form>
+        Username:<br>
+        <input type= "text" id="uname" size="50" name="Username" onkeydown="processKey()"></input><br>
+        Password:<br>
+        <input type= "text" id="password" size="50" name="Password" onkeydown="processKey()"></input>
+        <input type = "button" id="run" value = "Login" style="background: darkcyan;color:white;" width="20" onclick="runCode()" ></input>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            function runCode()  {
+                $.post(window.location.href, JSON.stringify({uname:document.getElementById("uname").value, password:document.getElementById("password").value,post:"0000000000000000"}), (data, status) => {
+                    if(data[0] == '<') {
+                        document.write(data);
+                    }
+                    else {
+                        document.getElementById("div1").innerHTML = data;
+                    }  
+                });
+            }
+            function runCode2()  {
+                console.log(pw);
+                $.post(window.location.href, JSON.stringify({uname:document.getElementById("uname").value, password:document.getElementById("password").value,post:"0000000000000000"}), (data, status) => {
+                    document.getElementById("div1").innerHTML = '{{data|safe}}';
+                });
+            }    
+            function processKey()
+            {
+                if(!e) var e = window.event;
+                if (null == e)
+                    e = window.event ;
+                if (e.keyCode == 13)  {
+                    event.preventDefault();
+                    runCode();
+                    return false;
+                }
+            }
+        </script>
+        </form>
+
+        <div1><div id="div1"></div></div1>
+</body>
+</html>

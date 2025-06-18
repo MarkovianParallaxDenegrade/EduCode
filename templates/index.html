@@ -1,0 +1,33 @@
+<html>
+    <head>
+    <title>CS 5740 Demos Homepage</title>
+    <script type=text/javascript>
+        function deshabilitarBoton() {
+            document.getElementById("envio").innerHTML ="hello";
+            return true;
+        </script>
+    </head>
+
+<body>
+  <label for="code">Please select the code you would like to run:</label>
+  <select id="code">
+    <option value="basic">Week 2: My First Exploit</option>
+    <option value="rop">Project 1: SaladCo</option>
+    <option value="heap">Week 6: Heap Overflow</option>
+    <option value="project2">Project 2: Josh's Linux Tutorials</option>
+    <option value="project3">Project 3: Woofer(TM)</option>
+  </select>
+
+    <form>
+        <input type = "button" value="Go" onclick="selectCode()">
+    </form>
+
+    <script>
+        function selectCode() {
+            var prog = document.getElementById("code");
+            var val = prog.value;
+            window.location.href = window.location + val;
+        }    
+    </script>
+</body>
+</html>

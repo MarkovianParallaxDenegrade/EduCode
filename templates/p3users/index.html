@@ -1,0 +1,58 @@
+<html>
+    <head>
+    <title>Woofer(TM)</title>
+    <script type=text/javascript>
+        function deshabilitarBoton() {
+            document.getElementById("envio").innerHTML ="hello";
+            return true;}
+        </script>
+    <style>
+        div1 {
+            white-space: pre-wrap;
+        }
+    </style>
+    </head>
+
+    <body>
+        
+    <font color="black">Welcome to Woofer(TM). A penny for your thoughts(R), {{username}}?</font>
+        
+        <form>
+        <input type= "text" id="command" size="50" name="command" onkeydown="processKey()"></input>
+        <input type = "button" id="run" value = "post" style="background: darkcyan;color:white;" width="20" onclick="runCode2()" ></input>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            function runCode()  {
+                $.post(window.location.href, JSON.stringify({uname:document.getElementById("uname").value, password:document.getElementById("password").value,post:"0000000000000000"}), (data, status) => {
+                    if(data[0] == '<') {
+                        document.write(data);
+                    }
+                    else {
+                        document.getElementById("div1").innerHTML = '{{data|safe}}';
+                    }  
+                });
+            }
+            function runCode2()  {
+                $.post(window.location.href, JSON.stringify({uname:'{{username}}', password:'{{pw}}',post:document.getElementById("command").value}), (data, status) => {
+                    document.getElementById("div1").innerHTML = data;
+                });
+            }  
+            function processKey()
+            {
+                if(!e) var e = window.event;
+                if (null == e)
+                    e = window.event ;
+                if (e.keyCode == 13)  {
+                    event.preventDefault();
+                    runCode();
+                    return false;
+                }
+            }
+        </script>
+        </form>
+
+        <div1><div id="div1">{{posts|safe}}</div></div1>
+
+        
+</body>
+</html>

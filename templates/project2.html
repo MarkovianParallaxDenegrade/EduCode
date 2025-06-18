@@ -1,0 +1,30 @@
+<html>
+    <head>
+    <title>CS 5740 Race Conditions Demo</title>
+    <script type=text/javascript>
+        function deshabilitarBoton() {
+            document.getElementById("envio").innerHTML ="hello";
+            return true;
+        </script>
+    </head>
+
+<body>
+  <label for="code">Welcome to Josh's Linux Tutorials! Please pick a command to learn about.</label>
+  <select id="code">
+    <option value="/symlinker">symlink/ln</option>
+    <option value="/reader">cat</option>
+  </select>
+
+    <form>
+        <input type = "button" value="Go" onclick="selectCode()">
+    </form>
+
+    <script>
+        function selectCode() {
+            var prog = document.getElementById("code");
+            var val = prog.value;
+            window.location.href = window.location + val;
+        }    
+    </script>
+</body>
+</html>

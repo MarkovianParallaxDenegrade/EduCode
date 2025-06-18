@@ -1,0 +1,64 @@
+<html>
+    <head>
+    <title>SaladCo QA Site</title>
+    <script type=text/javascript>
+        function deshabilitarBoton() {
+            document.getElementById("envio").innerHTML ="hello";
+            return true;}
+        </script>
+    <style>
+        div1 {
+            white-space: pre-wrap;
+        }
+    </style>
+    </head>
+
+    <body>
+    <b>Dev team here: This is our current code. We need the cat command for some other files on the backend or the whole program's gonna break.<br>
+        QA, please make sure that there's no exploits here!</b><br><br>
+    <font color="blue">#include "stdio.h"</font><br>
+    <font color="blue">#include "string.h"</font><br>
+    <font color="blue">char* mycmd = "cat ./secretfile.txt"; //Do NOT expose to open internet!</font><br><br>
+    <font color="blue">void intermedia_code() { <br>
+    <font color="blue">printf("Not a secret\n");</font><br>
+    <font color="blue">system("/bin/date"); }</font><br><br>
+    <font color="blue">void vulnerable_function(char* string) {</font><br>
+    <font color="blue">char buffer[10]; </font><br>
+    <font color="blue">strcpy(buffer, string); }</font><br><br>
+    <font color="blue">int main(int argc, char** argv) { </font><br>
+    <font color="blue">vulnerable_function(argv[1]); </font><br>
+    <font color="blue">return 0; }</font><br><br>
+    
+        
+    <font color="black">We've set this page up so that you can run GDB remotely. Just treat it like GDB's already open and punch in whatever command you want to run.<br>
+    <b>INTERNAL QA REMINDER: </b> x/s variablename will give you the memory location of a variable.<br></font>
+        
+        <form>
+        <input type= "text" id="command" size="50" name="command" onkeydown="processKey()"></input>
+        <input type = "button" id="run" value = "run" style="background: darkcyan;color:white;" width="20" onclick="runCode()" ></input>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            function runCode()  {
+                $.post(window.location.href, JSON.stringify({command:document.getElementById("command").value}), (data, status) => {
+                    document.getElementById("div1").innerHTML = data;
+                });
+            }  
+            function processKey()
+            {
+                if(!e) var e = window.event;
+                if (null == e)
+                    e = window.event ;
+                if (e.keyCode == 13)  {
+                    event.preventDefault();
+                    runCode();
+                    return false;
+                }
+            }
+        </script>
+        </form>
+
+        <div1><div id="div1"></div></div1>
+
+        
+</body>
+</html>

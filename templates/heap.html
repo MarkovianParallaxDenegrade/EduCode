@@ -1,0 +1,63 @@
+<html>
+    <head>
+    <title>Week 6: Heap Demo</title>
+    <script type=text/javascript>
+        function deshabilitarBoton() {
+            document.getElementById("envio").innerHTML ="hello";
+            return true;}
+        </script>
+    <style>
+        div1 {
+            white-space: pre-wrap;
+        }
+    </style>
+    </head>
+
+    <body>
+    <b>This program is vulnerable. You get the location of the two variables in the heap. Can you change the value of datafile?</b><br><br>
+    <font color="blue">#include "stdlib.h"</font><br>
+    <font color="blue">#include "stdio.h"</font><br>
+    <font color="blue">#include "string.h"</font><br><br>
+    <font color="blue">int main(int argc, char** argv) { </font><br>
+    <font color="blue">char *buffer = (char *)malloc(100); </font><br>
+    <font color="blue">char *datafile = (char *)malloc(20); </font><br><br>
+    <font color="blue">strcpy(datafile, "/var/nodes");</font><br>
+    <font color="blue">strcpy(buffer, argv[1]);</font><br><br>
+    <font color="blue">printf("[DEBUG] buffer: @ %p: \ '%s\' \n", buffer, buffer);</font><br><br>
+    <font color="blue">printf("[DEBUG] datafile @ %p: \ '%s\' \n", datafile, datafile);</font><br><br>
+    <font color="blue">free(buffer);</font><br>
+    <font color="blue">free(datafile);</font><br>
+    <font color="blue">return 0; }</font><br><br>
+    
+        
+    <font color="black">You may enter any text you wish to put here, then press the enter key or run button. Programs like python do not work, please run any text generation before input.</font>
+        
+        <form>
+        <input type= "text" id="command" size="50" name="command" onkeydown="processKey()"></input>
+        <input type = "button" id="run" value = "run" style="background: darkcyan;color:white;" width="20" onclick="runCode()" ></input>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            function runCode()  {
+                $.post(window.location.href, JSON.stringify({command:document.getElementById("command").value}), (data, status) => {
+                    document.getElementById("div1").innerHTML = data;
+                });
+            }  
+            function processKey()
+            {
+                if(!e) var e = window.event;
+                if (null == e)
+                    e = window.event ;
+                if (e.keyCode == 13)  {
+                    event.preventDefault();
+                    runCode();
+                    return false;
+                }
+            }
+        </script>
+        </form>
+
+        <div1><div id="div1"></div></div1>
+
+        
+</body>
+</html>
