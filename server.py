@@ -63,6 +63,7 @@ def rop():
         return ret
 
 #I recommend anyone looking at this code to tweak the results to be better. A lot of the ROP demo had to be manually programmed because of 64 vs. 32-bit code issues.
+#In the event that you can run a 32-bit server yourself, then you can just use the code in the else statement on line 124 as the entire argument.
 @app.route("/rop/gdb", methods=['GET', 'POST'])
 def ropgdb():
     if request.method == 'GET':
